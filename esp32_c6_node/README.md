@@ -14,4 +14,13 @@ Projekt odczytuje wewnętrzną temperaturę układu i wysyła ją do AWS (np. AP
 
 ## ⚙️ Konfiguracja
 
-Przed kompilacją **musisz** uzupełnić swoje poświadczenia AWS w pliku źródłowym, w funkcji `send_
+Przed kompilacją **musisz** uzupełnić swoje poświadczenia AWS w pliku źródłowym, w funkcji `send_signed_request()`:
+
+```cpp
+AWSSigner::Config awsConfig;
+awsConfig.accessKey = "TWÓJ_ACCESS_KEY";      // Klucz dostępu IAM
+awsConfig.secretKey = "TWÓJ_SECRET_KEY";      // Tajny klucz
+awsConfig.region    = "us-east-1";            // Twój region AWS
+awsConfig.service   = "lambda";               // np. 'lambda' lub 'execute-api'
+awsConfig.host      = "twoj-adres.amazonaws.com"; // Host bez 'https://'
+```
